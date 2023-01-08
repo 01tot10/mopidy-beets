@@ -12,6 +12,7 @@ class AlbumsCategoryBrowser(GenericBrowserBase):
 
     def get_toplevel(self):
         keys = self.api.get_sorted_unique_album_attributes(self.field)
+        keys = list(map(str,keys)) # convert possible integer results to str.
         return [
             models.Ref.directory(
                 name=key, uri=assemble_uri(self.ref.uri, id_value=key)
